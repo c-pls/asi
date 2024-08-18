@@ -12,7 +12,7 @@ x-airflow-common: &airflow-common
     - AIRFLOW__LOGGING__LOGGING_LEVEL=INFO
   volumes:
     - ./config:/opt/airflow/config
-    - ./src:/opt/airflow/dags/project1
+    - ./src/project1:/opt/airflow/dags/project1
     - ./logs:/opt/airflow/logs
   depends_on:
     - postgres
