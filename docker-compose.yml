@@ -1,7 +1,9 @@
-version: "3"
+version: "3.8"
 
 x-airflow-common: &airflow-common
-  image: apache/airflow
+  build:
+    context: .
+    dockerfile: Dockerfile
   environment:
     - AIRFLOW__CORE__EXECUTOR=LocalExecutor
     - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
@@ -11,6 +13,7 @@ x-airflow-common: &airflow-common
   volumes:
     - ./config:/opt/airflow/config
     - ./src:/opt/airflow/dags/project1
+    - ./logs:/opt/airflow/logs
   depends_on:
     - postgres
 
